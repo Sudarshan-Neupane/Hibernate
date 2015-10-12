@@ -20,7 +20,8 @@
 		<!-- Deop and re-create the database schema on startup  put update to solve this issue -->
 		<property name="hbm2ddl.auto">create</property>
 		
-		<mapping class="org.hibernate.first.dto.UserDetails8"/>
+		<!-- <mapping class="org.hibernate.first.dto.UserDetails8"/>  -->
+		<mapping class="org.hibernate.first.dto.UserDetailsCollection"/>
 	</session-factory>
 
 </hibernate-configuration>
