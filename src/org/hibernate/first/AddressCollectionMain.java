@@ -1,6 +1,7 @@
 package org.hibernate.first;
 
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -39,13 +40,14 @@ public class AddressCollectionMain {
 		udc =null;
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		udc = session.get(UserDetailsCollection.class, 0);
+		udc = (UserDetailsCollection)session.get(UserDetailsCollection.class, 1);
 		
-		Set<AddressCollection> addressSet=udc.getListOfAddress();
-		for (AddressCollection addressCollection : addressSet) {
-			System.out.println(addressCollection.getCity());
-			
-		}	
+//		Collection<AddressCollection> addressSet=udc.getListOfAddress();
+//		for (AddressCollection addressCollection : addressSet) {
+//			System.out.println(addressCollection.getCity());
+//			
+//		}	
 
+		udc.getListOfAddress();
 	}
 }
