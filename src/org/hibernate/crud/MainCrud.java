@@ -8,17 +8,20 @@ import org.hibernate.crud.UserCrud;
 public class MainCrud {
 	public static void main(String[] args) {
 		int i;
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		SessionFactory sf = new Configuration().configure()
+				.buildSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
-		for(i=0;i<10;i++){
-			UserCrud uc = new UserCrud();
-			uc.setUsername("username "+i);
-			session.save(uc);
-		}
+		// for(i=0;i<10;i++){
+		// UserCrud uc = new UserCrud();
+		// uc.setUsername("username "+i);
+		// session.save(uc);
+		// }
+		UserCrud user = (UserCrud) session.get(UserCrud.class, 3);
+		System.out.println("User name pulled up id " + user.getUsername());
 		session.getTransaction().commit();
 		session.close();
-	
+
 	}
 
 }
