@@ -12,7 +12,9 @@ public class MainHQL {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from UserCrud where id>5");
+		Query query = session.createQuery("from UserCrud");
+		query.setFirstResult(3);
+		query.setMaxResults(4);
 		List<UserCrud> users =(List<UserCrud>) query.list();
 		session.getTransaction().commit();
 		session.close();
