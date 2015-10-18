@@ -17,11 +17,15 @@ public class MainCrud {
 		// uc.setUsername("username "+i);
 		// session.save(uc);
 		// }
-		UserCrud user = (UserCrud) session.get(UserCrud.class, 3);
-		System.out.println("User name pulled up id " + user.getUsername());
+		UserCrud user = (UserCrud) session.get(UserCrud.class, 2);
+//		session.delete(user);
+//		System.out.println("User name pulled up id " + user.getUsername());
+		//For updating the user name
+		user.setUsername("updated username1 ");
+		//update
+		session.update(user);
 		session.getTransaction().commit();
 		session.close();
-
 	}
 
 }
