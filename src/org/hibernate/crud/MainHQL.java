@@ -12,15 +12,20 @@ public class MainHQL {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from UserCrud");
-		query.setFirstResult(3);
-		query.setMaxResults(4);
-		List<UserCrud> users =(List<UserCrud>) query.list();
+		Query query = session.createQuery("select id,username from UserCrud");
+//		query.setFirstResult(3);
+//		query.setMaxResults(4);
+//		List<UserCrud> users =(List<UserCrud>) query.list();
+//		List<String> userName =(List<String>) query.list();
+		List<Object[]> userName =(List<Object[]>) query.list();
+		
 		session.getTransaction().commit();
 		session.close();
-		for (UserCrud userCrud : users) {
-			System.out.println(userCrud.getUsername());
+		for (Object[] userCrud : userName) {
+			Integer id = (Integer)userCrud[0];
+			System.out.println(id);
+			System.out.println(userCrud[1]);
 		}
-		System.out.println("size of the list result " + users.size());
+//		System.out.println("size of the list result " + users.size());
 	}
 }
