@@ -23,6 +23,7 @@
 		<!-- <mapping class="org.hibernate.first.dto.UserDetails8"/>  -->
 		<mapping class="org.hibernate.relations.dto.UserDetailsEntity"/>
 		<mapping class="org.hibernate.relations.dto.Vehicle"/>
+		<mapping class="org.hibernate.crud.UserCrud"/>
 	</session-factory>
 
 </hibernate-configuration>
