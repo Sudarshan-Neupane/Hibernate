@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name="userByName",query="from UserCrud where id>?")
 public class UserCrud {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
