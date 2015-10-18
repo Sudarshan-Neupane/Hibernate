@@ -12,16 +12,25 @@ public class ParameterPass {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
-		int id1 =8;
-		Query query = session.createQuery("select id,username from UserCrud where id>"+id1);
-		List<Object[]> userName =(List<Object[]>) query.list();
-		
+		// when we simply pass this it will execute so it is dangerous
+		// String id1 =" 6 or 2=2";
+		// Query query =
+		// session.createQuery("select id,username from UserCrud where id>"+id1);
+		String id1 = "1";
+		// Query query = session.createQuery("from UserCrud where id> ?");
+		// query.setInteger(0, Integer.parseInt(id1));
+		// WE CAN ALSO DO LIKE THIS
+		String uname = "username 5";
+		Query query = session.createQuery("from UserCrud where id> :userId and username=:un");
+		query.setInteger("userId", Integer.parseInt(id1));
+		query.setString("un",uname);
+
+		List<UserCrud> userName = (List<UserCrud>) query.list();
+
 		session.getTransaction().commit();
 		session.close();
-		for (Object[] userCrud : userName) {
-			Integer id = (Integer)userCrud[0];
-			System.out.println(id);
-			System.out.println(userCrud[1]);
+		for (UserCrud userCrud : userName) {
+			System.out.println(userCrud.getUsername());
 		}
 	}
 }
